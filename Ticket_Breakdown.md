@@ -25,3 +25,13 @@ You will be graded on the level of detail in each ticket, the clarity of the exe
 
 <strong>Description:</strong> customID column will be used to store a custom ID that facilities may choose to enter on the frontend.  The column should accept string data and should have a default value of null.
 
+### Update get function to check for and use custom ID
+<strong>Subject:</strong> Update calls to getShiftsByFacility function
+
+<strong>Acceptance Criteria</strong> 
+ - Function accepts either custom id OR internal facility id
+ - Function determines which DB query to run based on input data type
+
+<strong>SLA Goal</strong> 30 minutes
+
+<strong>Description:</strong> getShiftsByFacility function should determine whether input is an internal id or a custom id based on data type (assuming a 64 bit integer for internal ids) and run the appropriate DB query.
