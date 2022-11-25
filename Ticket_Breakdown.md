@@ -17,21 +17,31 @@ You will be graded on the level of detail in each ticket, the clarity of the exe
 
 ## Your Breakdown Here
 
-### Add field for custom ID
-<strong>Subject:</strong> Add 'customID' column to facility table in schema
+The following tickets are based on the assumption that the custom ID will be a 32 or 64 bit integer.  If the custom id will be a string, then the tickets would include criteria to add logic and error handling for differing data types based on whether id or customAgentID were retrieved from the DB, and a third ticket would need to be created for the generateReport function.
+
+<hr>
+
+### Add custom ID for Agents: Add column for custom ID
+<strong>Subject:</strong> Add 'customAgentID' column to Agents table in schema
+
 <strong>Acceptance Criteria</strong> 
- - Column must accept string data and be optional
+- Column data type and length parameters should match existing id column
+- Should be optional (default value should be null)
+
 <strong>SLA Goal</strong> 15 minutes
 
-<strong>Description:</strong> customID column will be used to store a custom ID that facilities may choose to enter on the frontend.  The column should accept string data and should have a default value of null.
+<strong>Description:</strong> customAgentID column will be used to store a custom ID that facilities may choose to enter for an agent on the frontend.  The column data type and length should match the existing id column, but should have a default value of null.
 
-### Update get function to check for and use custom ID
-<strong>Subject:</strong> Update calls to getShiftsByFacility function
+<br>
+
+### Add custom ID for Agents: Update get function to check for and use custom ID
+<strong>Subject:</strong> Update getShiftsByFacility function
 
 <strong>Acceptance Criteria</strong> 
- - Function accepts either custom id OR internal facility id
- - Function determines which DB query to run based on input data type
+ - DB query to Agent table should select the agent id only if the customAgentID field is null
 
 <strong>SLA Goal</strong> 30 minutes
 
-<strong>Description:</strong> getShiftsByFacility function should determine whether input is an internal id or a custom id based on data type (assuming a 64 bit integer for internal ids) and run the appropriate DB query.
+<strong>Description:</strong> DB query that retrieves Agent data in the getShiftsByFacility function should use ISNULL for the customAgentID and id fields so that the customAgentID is only selected if not null, and the id field is selected by default.
+
+
